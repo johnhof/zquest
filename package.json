@@ -1,0 +1,28 @@
+{
+  "name": "zmq-request",
+  "version": "1.0.0",
+  "description": "Promise based request socket client ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnhof/zmq-request.git"
+  },
+  "keywords": [
+    "zmq",
+    "zeromq",
+    "request",
+    "promise"
+  ],
+  "author": "John Hofrichter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnhof/zmq-request/issues"
+  },
+  "homepage": "https://github.com/johnhof/zmq-request#readme",
+  "dependencies": {
+    "node-uuid": "^1.4.7"
+  }
+}
