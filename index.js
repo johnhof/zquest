@@ -3,6 +3,6 @@
 const Client = require('./lib/client');
 
 let client = new Client();
-module.exports = client.request;
-module.exports.defaults = client.defaults;
+module.exports = (c) => client.request(c);
+module.exports.defaults = (c) => client.defaults(c);
 module.exports.new = (opts) => new Client(opts)
