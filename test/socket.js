@@ -22,7 +22,7 @@ describe('Socket - wrapper class', () => {
     socket.close();
   });
 
-  it('should timout and close', function (done) {
+  it('should timeout and close', function (done) {
     let socket = new Socket(URL, { expire: 10 });
     let closed = false;
     socket.on('expire', () => {

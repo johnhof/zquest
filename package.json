@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/johnhof/zmq-request#readme",
   "dependencies": {
+    "comise": "^1.0.1",
     "node-uuid": "^1.4.7",
+    "uuid": "^2.0.3",
     "zmq": "^2.15.3"
   },
   "devDependencies": {

@@ -10,6 +10,6 @@
     "socket_expire": 600000,
     "self_expire": 600000,
     "acquire_retry": 100,
-    "acquire_attempt": 10
+    "acquire_attempts": 10
   }
 }
