@@ -5,9 +5,11 @@
     "timeout": 10000
   },
   "pool": {
-    "min": 1,
-    "max": 50,
+    "min": 2,
+    "max": 500,
     "socket_expire": 600000,
-    "self_expire": 600000
+    "self_expire": 600000,
+    "acquire_retry": 100,
+    "acquire_attempt": 10
   }
 }

@@ -4,7 +4,7 @@
   "description": "Promise based request socket client ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,10 @@
   "dependencies": {
     "node-uuid": "^1.4.7",
     "zmq": "^2.15.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "co-mocha": "^1.1.3",
+    "mocha": "^3.1.0"
   }
 }
