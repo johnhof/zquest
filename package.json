@@ -1,5 +1,5 @@
 {
-  "name": "zmq-request",
+  "name": "zquest",
   "version": "1.0.0",
   "description": "Promise based request socket client ",
   "main": "index.js",

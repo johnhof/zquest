@@ -11,6 +11,8 @@ const Pool = require('../lib/pool');
 const wait = require('../lib/helpers/wait');
 const DEFAULTS = require('../lib/defaults');
 
+const Reflector = require('./utilities/reflector');
+
 // Rstore defaults
 let restoreDefaults = function() {
   // reset request pools
@@ -128,41 +130,36 @@ describe('Request', () => {
     });
 
     it('should allow for concurrent requests', function (done) {
-      let socket = ZMQ.socket('rep');
+      this.timeout(5000);
       let connection = `${DEFAULTS.request.host}:${DEFAULTS.request.port}`;
-      let expectNum = 100;
+      // let expectNum = 100;
+      let expectNum = 10;
       let actualNum = 0;
-      socket.bindSync(`tcp://${connection}`);
-      socket.on('message', (msg) => {
-        msg = zquest.parse(msg);
-        console.log(msg);
-        socket.send(msg);
-      });
+      let reflector = new Reflector(`tcp://${connection}`);
 
       // zquest.defaults();
       for (let i = expectNum; i  > 0; i--) {
         zquest({
           message: i
         }).then((data) => {
-          console.log(data);
-          console.log(expectNum, actualNum)
           actualNum++;
           if (expectNum === actualNum) {
+            reflector.close();
             done();
-            socket.close();
           }
         }).catch((e) => {
+          console.log(e.stack)
           actualNum++;
           if (expectNum === actualNum) {
+            reflector.close();
             done();
-            socket.close();
           }
-          expect(e).to.be.undefined
+          expect(e).to.be.undefined;
         });
       }
 
       let pool = zquest.client.connections[connection];
-      expect(Object.keys(pool.sockets.locked).length).to.equal(100);
+      expect(Object.keys(pool.sockets.locked).length).to.equal(expectNum);
     })
   });
 });

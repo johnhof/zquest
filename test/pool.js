@@ -62,7 +62,7 @@ describe('Pool - socket pool class', () => {
     expect(Object.keys(pool.sockets.locked).length).to.equal(0);
   });
 
-  it('should utilize existing sockects when available', function *() {
+  it('should utilize existing sockets when available', function *() {
     let pool = new Pool(HOST, PORT);
     let acquired = [];
     expect(Object.keys(pool.sockets.free).length).to.equal(2);
