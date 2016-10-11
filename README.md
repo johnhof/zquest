@@ -1,5 +1,7 @@
 # zquest
 
+[![Build Status](https://travis-ci.org/johnhof/zquest.svg?branch=master)](https://travis-ci.org/johnhof/zquest)
+
 Promise based [ØMQ](http://zeromq.org/) request client.
 
 ## Usage
