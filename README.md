@@ -12,43 +12,6 @@ Zquest is designed to loosely follow the [request](https://github.com/request/re
 - Self expiring [sockets](https://github.com/johnhof/zquest/blob/master/lib/socket.js) (10 min default)
 - Mapping of one socket pool per host
 
-### CAVEAT:
-
-the responding server **MUST** return the request ID as part of the response. As **either** a property `_request_id` or prefixed to the request as `[ID]:`
-
-Eg:
-```javascript
-zquest({ data: 'testing' });
-
-socket.on('message', (message) => {
-  message = zquest.parse(message); // => { _request_id: b6c537f5-73cb-4681-9d4c-786248c4dc93, data: 'testing' }
-
-  // Either:
-  socket.send(message._request_id + ':hello_world');
-
-  // OR
-  socket.send({
-    _request_id: message._request_id,
-    data: 'hello_world'
-  });
-});
-```
-
-## Key
-
-- [Example](#example)
-  - [Client](#client)
-  - [Server](#server)
-- [Documentation](#)
-  - [Defaults](#defaults)
-  - [`zquest(req)`](#zquestreq)
-  - [`zquest.defaults(opts)`](#zquestdefaultsopts)
-  - [`zquest.client`](#zquestclient)
-  - [`zquest.new(message)`](#zquestnewmessage)
-  - [`zquest.parse(message)`](#zquestparsemessage)
-  - [`zquest.parse.message(message)`](#zquestparsemessagemessage)
-  - [`zquest.parse.messageId(message)`](#zquestparsemessageidmessage)
-
 ## Example
 
 ### Client
@@ -81,11 +44,49 @@ let socket = zmq.socket('rep');
 socket.bindSync(`tcp://localhost:5555`);
 
 socket.on('message', (msg) => {
-  msg = zquest.parse(msg);
-  console.log(msg.data); // => testing
-  socket.send(msg._request_id + ':' + msg.data);
+msg = zquest.parse(msg);
+console.log(msg.data); // => testing
+socket.send(msg._request_id + ':' + msg.data);
 });
+```
 
+## Key
+
+- [Example](#example)
+  - [Client](#client)
+  - [Server](#server)
+- [Caveat](#caveat)
+- [Documentation](#)
+  - [Defaults](#defaults)
+  - [`zquest(req)`](#zquestreq)
+  - [`zquest.defaults(opts)`](#zquestdefaultsopts)
+  - [`zquest.client`](#zquestclient)
+  - [`zquest.new(message)`](#zquestnewmessage)
+  - [`zquest.parse(message)`](#zquestparsemessage)
+  - [`zquest.parse.message(message)`](#zquestparsemessagemessage)
+  - [`zquest.parse.messageId(message)`](#zquestparsemessageidmessage)
+
+
+### Caveat
+
+the responding server **MUST** return the request ID as part of the response. As **either** a property `_request_id` or prefixed to the request as `[ID]:`
+
+Eg:
+```javascript
+zquest({ data: 'testing' });
+
+socket.on('message', (message) => {
+  message = zquest.parse(message); // => { _request_id: b6c537f5-73cb-4681-9d4c-786248c4dc93, data: 'testing' }
+
+  // Either:
+  socket.send(message._request_id + ':hello_world');
+
+  // OR
+  socket.send({
+    _request_id: message._request_id,
+    data: 'hello_world'
+  });
+});
 ```
 
 ## Documentation
