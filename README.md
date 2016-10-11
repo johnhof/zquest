@@ -9,7 +9,7 @@ Zquest is designed to loosely follow the [request](https://github.com/request/re
   - Self expiring (10 min default), including member socket cleanup
   - Auto scaling of member sockets within bounds (2-500 default)
   - Socket acquisition timeouts
-- Self expiring sockets (10 min default)
+- Self expiring [sockets](https://github.com/johnhof/zquest/blob/master/lib/socket.js) (10 min default)
 - Mapping of one socket pool per host
 
 ### CAVEAT:
@@ -48,6 +48,7 @@ socket.on('message', (message) => {
   - [`zquest.parse(message)`](#zquestparsemessage)
   - [`zquest.parse.message(message)`](#zquestparsemessagemessage)
   - [`zquest.parse.messageId(message)`](#zquestparsemessageidmessage)
+
 ## Example
 
 ### Client
@@ -151,7 +152,7 @@ zquest.client;
 zquest.client.request() // === zquest()
 ```
 
-### `zquest.new`
+### `zquest.new(message)`
 
 - Utility to retrieve a new zquest client
 - Accepts
