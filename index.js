@@ -9,6 +9,7 @@ let client = new Client();
 // Generic request
 module.exports = (c) => client.request(c);
 module.exports.defaults = (c) => client.defaults(c);
+module.exports.close = (c) => client.close(c);
 module.exports.client = client;
 
 // New request object

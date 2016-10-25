@@ -62,6 +62,7 @@ socket.send(msg._request_id + ':' + msg.data);
   - [Defaults](#defaults)
   - [`zquest(req)`](#zquestreq)
   - [`zquest.defaults(opts)`](#zquestdefaultsopts)
+  - [`zquest.close()`](#zquestclose)
   - [`zquest.client`](#zquestclient)
   - [`zquest.new(message)`](#zquestnewmessage)
   - [`zquest.parse(message)`](#zquestparsemessage)
@@ -144,6 +145,14 @@ zquest.defaults({
     min: 5
   }
 });
+```
+
+### `zquest.close()`
+
+- Close and clean all pools/sockets
+
+```javascript
+zquest.close();
 ```
 
 ### `zquest.client`
